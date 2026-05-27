@@ -2,7 +2,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -56,108 +55,31 @@ type Pokemon struct {
 }
 
 func NewPokemon(name string, element Element, conversationCount int, positiveSentimentPercent float32, negativeSentimentPercent float32) Pokemon {
-	return Pokemon{
-		Name:                     name,
-		Element:                  element,
-		ConversationCount:        conversationCount,
-		PositiveSentimentPercent: positiveSentimentPercent,
-		NegativeSentimentPercent: negativeSentimentPercent,
-	}
+	_ = "STUB: not implemented"
+	return *new(Pokemon)
 }
 
-func (p Pokemon) ToRow() table.Row {
-	color, exists := elementColors[p.Element]
+func (p Pokemon) ToRow() table.Row { _ = "STUB: not implemented"; return *new(table.Row) }
 
-	if !exists {
-		color = elementColors[elementNormal]
-	}
-
-	return table.NewRow(table.RowData{
-		columnKeyName:              p.Name,
-		columnKeyElement:           table.NewStyledCell(p.Element, lipgloss.NewStyle().Foreground(lipgloss.Color(color))),
-		columnKeyConversations:     p.ConversationCount,
-		columnKeyPositiveSentiment: p.PositiveSentimentPercent,
-		columnKeyNegativeSentiment: p.NegativeSentimentPercent,
-
-		// This isn't a visible column, but we can add the data here anyway for later retrieval
-		columnKeyPokemonData: p,
-	})
-}
+// This isn't a visible column, but we can add the data here anyway for later retrieval
 
 type Model struct {
 	pokeTable table.Model
 }
 
-func NewModel() Model {
-	pokemon := []Pokemon{
-		NewPokemon("Pikachu", elementElectric, 2300648, 21.9, 8.54),
-		NewPokemon("Eevee", elementNormal, 636373, 26.4, 7.37),
-		NewPokemon("Bulbasaur", elementPlant, 352190, 25.7, 9.02),
-		NewPokemon("Squirtle", elementWater, 241259, 25.6, 5.96),
-		NewPokemon("Blastoise", elementWater, 162794, 19.5, 6.04),
-		NewPokemon("Charmander", elementFire, 265760, 31.2, 5.25),
-		NewPokemon("Charizard", elementFire, 567763, 25.6, 7.56),
-	}
+func NewModel() Model { _ = "STUB: not implemented"; return *new(Model) }
 
-	rows := []table.Row{}
-
-	for _, p := range pokemon {
-		rows = append(rows, p.ToRow())
-	}
-
-	return Model{
-		pokeTable: table.New([]table.Column{
-			table.NewColumn(columnKeyName, "Name", 13),
-			table.NewColumn(columnKeyElement, "Element", 10),
-			table.NewColumn(columnKeyConversations, "# Conversations", 15),
-			table.NewColumn(columnKeyPositiveSentiment, ":D %", 5).WithStyle(lipgloss.NewStyle().Foreground(lipgloss.Color("#8c8"))),
-			table.NewColumn(columnKeyNegativeSentiment, ":( %", 5).WithStyle(lipgloss.NewStyle().Foreground(lipgloss.Color("#c88"))),
-		}).WithRows(rows).
-			BorderRounded().
-			WithBaseStyle(styleBase).
-			WithPageSize(6).
-			SortByDesc(columnKeyConversations).
-			Focused(true),
-	}
-}
-
-func (m Model) Init() tea.Cmd {
-	return nil
-}
+func (m Model) Init() tea.Cmd { _ = "STUB: not implemented"; return *new(tea.Cmd) }
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	var (
-		cmd  tea.Cmd
-		cmds []tea.Cmd
-	)
-
-	m.pokeTable, cmd = m.pokeTable.Update(msg)
-	cmds = append(cmds, cmd)
-
-	switch msg := msg.(type) {
-	case tea.KeyMsg:
-		switch msg.String() {
-		case "ctrl+c", "esc", "q":
-			cmds = append(cmds, tea.Quit)
-		}
-	}
-
-	return m, tea.Batch(cmds...)
+	_ = "STUB: not implemented"
+	return *new(tea.Model), *new(tea.Cmd)
 }
 
 func (m Model) View() string {
+	_ = "STUB: not implemented"
 	// Get the metadata back out of the row
-	selected := m.pokeTable.HighlightedRow().Data[columnKeyPokemonData].(Pokemon)
-
-	view := lipgloss.JoinVertical(
-		lipgloss.Left,
-		styleSubtle.Render("Press q or ctrl+c to quit - Sorted by # Conversations"),
-		styleSubtle.Render("Highlighted: "+fmt.Sprintf("%s (%s)", selected.Name, selected.Element)),
-		styleSubtle.Render("https://www.nintendolife.com/news/2021/11/these-are-the-most-loved-and-most-hated-pokemon-according-to-a-new-study"),
-		m.pokeTable.View(),
-	) + "\n"
-
-	return lipgloss.NewStyle().MarginLeft(1).Render(view)
+	return ""
 }
 
 func main() {

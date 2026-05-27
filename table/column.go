@@ -19,15 +19,7 @@ type Column struct {
 }
 
 // NewColumn creates a new fixed-width column with the given information.
-func NewColumn(key, title string, width int) Column {
-	return Column{
-		key:   key,
-		title: title,
-		width: width,
-
-		filterable: false,
-	}
-}
+func NewColumn(key, title string, width int) Column { _ = "STUB: not implemented"; return *new(Column) }
 
 // NewFlexColumn creates a new flexible width column that tries to fill in the
 // total table width.  If multiple flex columns exist, each will measure against
@@ -37,27 +29,21 @@ func NewColumn(key, title string, width int) Column {
 // must use WithTargetWidth if you have any flex columns, so that the table knows
 // how much width it should fill.
 func NewFlexColumn(key, title string, flexFactor int) Column {
-	return Column{
-		key:   key,
-		title: title,
-
-		flexFactor: max(flexFactor, 1),
-	}
+	_ = "STUB: not implemented"
+	return *new(Column)
 }
 
 // WithStyle applies a style to the column as a whole.
 func (c Column) WithStyle(style lipgloss.Style) Column {
-	c.style = style.Copy().Width(c.width)
-
-	return c
+	_ = "STUB: not implemented"
+	return *new(Column)
 }
 
 // WithFiltered sets whether the column should be considered for filtering (true)
 // or not (false).
 func (c Column) WithFiltered(filterable bool) Column {
-	c.filterable = filterable
-
-	return c
+	_ = "STUB: not implemented"
+	return *new(Column)
 }
 
 // WithFormatString sets the format string used by fmt.Sprintf to display the data.
@@ -68,51 +54,52 @@ func (c Column) WithFiltered(filterable bool) Column {
 // is of the expected type or the format may fail.  For example, hardcoding '3'
 // instead of '3.0' and using '%.2f' will fail because '3' is an integer.
 func (c Column) WithFormatString(fmtString string) Column {
-	c.fmtString = fmtString
-
-	return c
+	_ = "STUB: not implemented"
+	return *new(Column)
 }
 
-func (c *Column) isFlex() bool {
-	return c.flexFactor != 0
-}
+func (c *Column) isFlex() bool { _ = "STUB: not implemented"; return false }
 
 // Title returns the title of the column.
 func (c Column) Title() string {
-	return c.title
+	_ = "STUB: not implemented"
+
+	// Key returns the key of the column.
+	return ""
 }
 
-// Key returns the key of the column.
 func (c Column) Key() string {
-	return c.key
+	_ = "STUB: not implemented"
+
+	// Width returns the width of the column.
+	return ""
 }
 
-// Width returns the width of the column.
 func (c Column) Width() int {
-	return c.width
+	_ = "STUB: not implemented"
+
+	// FlexFactor returns the flex factor of the column.
+	return 0
 }
 
-// FlexFactor returns the flex factor of the column.
-func (c Column) FlexFactor() int {
-	return c.flexFactor
-}
+func (c Column) FlexFactor() int { _ = "STUB: not implemented"; return 0 }
 
 // IsFlex returns whether the column is a flex column.
 func (c Column) IsFlex() bool {
-	return c.isFlex()
+	_ = "STUB: not implemented"
+
+	// Filterable returns whether the column is filterable.
+	return false
 }
 
-// Filterable returns whether the column is filterable.
-func (c Column) Filterable() bool {
-	return c.filterable
-}
+func (c Column) Filterable() bool { _ = "STUB: not implemented"; return false }
 
 // Style returns the style of the column.
 func (c Column) Style() lipgloss.Style {
-	return c.style
+	_ = "STUB: not implemented"
+
+	// FmtString returns the format string of the column.
+	return *new(lipgloss.Style)
 }
 
-// FmtString returns the format string of the column.
-func (c Column) FmtString() string {
-	return c.fmtString
-}
+func (c Column) FmtString() string { _ = "STUB: not implemented"; return "" }

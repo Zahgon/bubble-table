@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"strings"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/evertras/bubble-table/table"
@@ -24,82 +22,20 @@ type Model struct {
 	scrollableTable table.Model
 }
 
-func colKey(colNum int) string {
-	return fmt.Sprintf("%d", colNum)
-}
+func colKey(colNum int) string { _ = "STUB: not implemented"; return "" }
 
-func genRow(id int) table.Row {
-	data := table.RowData{
-		columnKeyID: fmt.Sprintf("ID %d", id),
-	}
+func genRow(id int) table.Row { _ = "STUB: not implemented"; return *new(table.Row) }
 
-	for i := 0; i < numCols; i++ {
-		data[colKey(i)] = colWidth
-	}
+func NewModel() Model { _ = "STUB: not implemented"; return *new(Model) }
 
-	return table.NewRow(data)
-}
-
-func NewModel() Model {
-	rows := []table.Row{}
-
-	for i := 0; i < numRows; i++ {
-		rows = append(rows, genRow(i))
-	}
-
-	cols := []table.Column{
-		table.NewColumn(columnKeyID, "ID", idWidth),
-	}
-
-	for i := 0; i < numCols; i++ {
-		cols = append(cols, table.NewColumn(colKey(i), colKey(i+1), colWidth))
-	}
-
-	t := table.New(cols).
-		WithRows(rows).
-		WithMaxTotalWidth(maxWidth).
-		WithHorizontalFreezeColumnCount(1).
-		WithStaticFooter("A footer").
-		Focused(true)
-
-	return Model{
-		scrollableTable: t,
-	}
-}
-
-func (m Model) Init() tea.Cmd {
-	return nil
-}
+func (m Model) Init() tea.Cmd { _ = "STUB: not implemented"; return *new(tea.Cmd) }
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	var (
-		cmd  tea.Cmd
-		cmds []tea.Cmd
-	)
-
-	m.scrollableTable, cmd = m.scrollableTable.Update(msg)
-	cmds = append(cmds, cmd)
-
-	switch msg := msg.(type) {
-	case tea.KeyMsg:
-		switch msg.String() {
-		case "ctrl+c", "esc", "q":
-			cmds = append(cmds, tea.Quit)
-		}
-	}
-
-	return m, tea.Batch(cmds...)
+	_ = "STUB: not implemented"
+	return *new(tea.Model), *new(tea.Cmd)
 }
 
-func (m Model) View() string {
-	body := strings.Builder{}
-
-	body.WriteString("A scrollable table\nPress shift+left or shift+right to scroll\nPress q or ctrl+c to quit\n\n")
-
-	body.WriteString(m.scrollableTable.View())
-
-	return body.String()
-}
+func (m Model) View() string { _ = "STUB: not implemented"; return "" }
 
 func main() {
 	p := tea.NewProgram(NewModel())

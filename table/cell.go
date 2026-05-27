@@ -44,17 +44,13 @@ type StyledCellFunc = func(input StyledCellFuncInput) lipgloss.Style
 // NewStyledCell creates an entry that can be set in the row data and show as
 // styled with the given style.
 func NewStyledCell(data any, style lipgloss.Style) StyledCell {
-	return StyledCell{
-		Data:  data,
-		Style: style,
-	}
+	_ = "STUB: not implemented"
+	return *new(StyledCell)
 }
 
 // NewStyledCellWithStyleFunc creates an entry that can be set in the row data and show as
 // styled with the given style function.
 func NewStyledCellWithStyleFunc(data any, styleFunc StyledCellFunc) StyledCell {
-	return StyledCell{
-		Data:      data,
-		StyleFunc: styleFunc,
-	}
+	_ = "STUB: not implemented"
+	return *new(StyledCell)
 }

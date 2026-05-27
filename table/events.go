@@ -5,31 +5,21 @@ package table
 // will NOT be generated when code programmatically changes values in the table.
 type UserEvent any
 
-func (m *Model) appendUserEvent(e UserEvent) {
-	m.lastUpdateUserEvents = append(m.lastUpdateUserEvents, e)
-}
+func (m *Model) appendUserEvent(e UserEvent) { _ = "STUB: not implemented"; return }
 
-func (m *Model) clearUserEvents() {
-	m.lastUpdateUserEvents = nil
-}
+func (m *Model) clearUserEvents() { _ = "STUB: not implemented"; return }
 
 // GetLastUpdateUserEvents returns a list of events that happened due to user
 // input in the last Update call.  This is useful to look for triggers such as
 // whether the user moved to a new highlighted row.
 func (m *Model) GetLastUpdateUserEvents() []UserEvent {
+	_ = "STUB: not implemented"
 	// Most common case
-	if len(m.lastUpdateUserEvents) == 0 {
-		return nil
-	}
-
-	returned := make([]UserEvent, len(m.lastUpdateUserEvents))
-
-	// Slightly wasteful but helps guarantee immutability, and this should only
-	// have data very rarely so this is fine
-	copy(returned, m.lastUpdateUserEvents)
-
-	return returned
+	return nil
 }
+
+// Slightly wasteful but helps guarantee immutability, and this should only
+// have data very rarely so this is fine
 
 // UserEventHighlightedIndexChanged indicates that the user has scrolled to a new
 // row.

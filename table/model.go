@@ -112,37 +112,9 @@ type Model struct {
 }
 
 // New creates a new table ready for further modifications.
-func New(columns []Column) Model {
-	filterInput := textinput.New()
-	filterInput.Prompt = "/"
-	model := Model{
-		columns:        make([]Column, len(columns)),
-		metadata:       make(map[string]any),
-		highlightStyle: defaultHighlightStyle.Copy(),
-		border:         borderDefault,
-		headerVisible:  true,
-		footerVisible:  true,
-		keyMap:         DefaultKeyMap(),
+func New(columns []Column) Model { _ = "STUB: not implemented"; return *new(Model) }
 
-		selectedText:   "[x]",
-		unselectedText: "[ ]",
-
-		filterTextInput: filterInput,
-		filterFunc:      filterFuncContains,
-		baseStyle:       lipgloss.NewStyle().Align(lipgloss.Right),
-
-		paginationWrapping: true,
-	}
-
-	// Do a full deep copy to avoid unexpected edits
-	copy(model.columns, columns)
-
-	model.recalculateWidth()
-
-	return model
-}
+// Do a full deep copy to avoid unexpected edits
 
 // Init initializes the table per the Bubble Tea architecture.
-func (m Model) Init() tea.Cmd {
-	return nil
-}
+func (m Model) Init() tea.Cmd { _ = "STUB: not implemented"; return *new(tea.Cmd) }

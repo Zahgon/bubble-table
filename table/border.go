@@ -99,247 +99,54 @@ func init() {
 	borderRounded.generateStyles()
 }
 
-func (b *Border) generateStyles() {
-	b.generateMultiStyles()
-	b.generateSingleColumnStyles()
-	b.generateSingleRowStyles()
-	b.generateSingleCellStyle()
+func (b *Border) generateStyles() { _ = "STUB: not implemented"; return }
 
-	// The footer is a single cell with the top taken off... usually.  We can
-	// re-enable the top if needed this way for certain format configurations.
-	b.styleFooter = b.styleSingleCell.Copy().
-		Align(lipgloss.Right).
-		BorderBottom(true).
-		BorderRight(true).
-		BorderLeft(true)
-}
+// The footer is a single cell with the top taken off... usually.  We can
+// re-enable the top if needed this way for certain format configurations.
 
 func (b *Border) styleLeftWithFooter(original lipgloss.Style) lipgloss.Style {
-	border := original.GetBorderStyle()
-
-	border.BottomLeft = b.LeftJunction
-
-	return original.Copy().BorderStyle(border)
+	_ = "STUB: not implemented"
+	return *new(lipgloss.Style)
 }
 
 func (b *Border) styleRightWithFooter(original lipgloss.Style) lipgloss.Style {
-	border := original.GetBorderStyle()
-
-	border.BottomRight = b.RightJunction
-
-	return original.Copy().BorderStyle(border)
+	_ = "STUB: not implemented"
+	return *new(lipgloss.Style)
 }
 
 func (b *Border) styleBothWithFooter(original lipgloss.Style) lipgloss.Style {
-	border := original.GetBorderStyle()
-
-	border.BottomLeft = b.LeftJunction
-	border.BottomRight = b.RightJunction
-
-	return original.Copy().BorderStyle(border)
+	_ = "STUB: not implemented"
+	return *new(lipgloss.Style)
 }
 
 // This function is long, but it's just repetitive...
 //
 //nolint:funlen
-func (b *Border) generateMultiStyles() {
-	b.styleMultiTopLeft = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			TopLeft:     b.TopLeft,
-			Top:         b.Top,
-			TopRight:    b.TopJunction,
-			Right:       b.InnerDivider,
-			BottomRight: b.InnerJunction,
-			Bottom:      b.Bottom,
-			BottomLeft:  b.LeftJunction,
-			Left:        b.Left,
-		},
-	)
+func (b *Border) generateMultiStyles() { _ = "STUB: not implemented"; return }
 
-	b.styleMultiTop = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Top:    b.Top,
-			Right:  b.InnerDivider,
-			Bottom: b.Bottom,
+func (b *Border) generateSingleColumnStyles() { _ = "STUB: not implemented"; return }
 
-			TopRight:    b.TopJunction,
-			BottomRight: b.InnerJunction,
-		},
-	).BorderTop(true).BorderBottom(true).BorderRight(true)
+func (b *Border) generateSingleRowStyles() { _ = "STUB: not implemented"; return }
 
-	b.styleMultiTopRight = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Top:    b.Top,
-			Right:  b.Right,
-			Bottom: b.Bottom,
-
-			TopRight:    b.TopRight,
-			BottomRight: b.RightJunction,
-		},
-	).BorderTop(true).BorderBottom(true).BorderRight(true)
-
-	b.styleMultiLeft = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Left:  b.Left,
-			Right: b.InnerDivider,
-		},
-	).BorderRight(true).BorderLeft(true)
-
-	b.styleMultiRight = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Right: b.Right,
-		},
-	).BorderRight(true)
-
-	b.styleMultiInner = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Right: b.InnerDivider,
-		},
-	).BorderRight(true)
-
-	b.styleMultiBottomLeft = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Left:   b.Left,
-			Right:  b.InnerDivider,
-			Bottom: b.Bottom,
-
-			BottomLeft:  b.BottomLeft,
-			BottomRight: b.BottomJunction,
-		},
-	).BorderLeft(true).BorderBottom(true).BorderRight(true)
-
-	b.styleMultiBottom = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Right:  b.InnerDivider,
-			Bottom: b.Bottom,
-
-			BottomRight: b.BottomJunction,
-		},
-	).BorderBottom(true).BorderRight(true)
-
-	b.styleMultiBottomRight = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Right:  b.Right,
-			Bottom: b.Bottom,
-
-			BottomRight: b.BottomRight,
-		},
-	).BorderBottom(true).BorderRight(true)
-}
-
-func (b *Border) generateSingleColumnStyles() {
-	b.styleSingleColumnTop = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Top:    b.Top,
-			Left:   b.Left,
-			Right:  b.Right,
-			Bottom: b.Bottom,
-
-			TopLeft:     b.TopLeft,
-			TopRight:    b.TopRight,
-			BottomLeft:  b.LeftJunction,
-			BottomRight: b.RightJunction,
-		},
-	)
-
-	b.styleSingleColumnInner = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Left:  b.Left,
-			Right: b.Right,
-		},
-	).BorderRight(true).BorderLeft(true)
-
-	b.styleSingleColumnBottom = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Left:   b.Left,
-			Right:  b.Right,
-			Bottom: b.Bottom,
-
-			BottomLeft:  b.BottomLeft,
-			BottomRight: b.BottomRight,
-		},
-	).BorderRight(true).BorderLeft(true).BorderBottom(true)
-}
-
-func (b *Border) generateSingleRowStyles() {
-	b.styleSingleRowLeft = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Top:    b.Top,
-			Left:   b.Left,
-			Right:  b.InnerDivider,
-			Bottom: b.Bottom,
-
-			BottomLeft:  b.BottomLeft,
-			BottomRight: b.BottomJunction,
-			TopRight:    b.TopJunction,
-			TopLeft:     b.TopLeft,
-		},
-	)
-
-	b.styleSingleRowInner = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Top:    b.Top,
-			Right:  b.InnerDivider,
-			Bottom: b.Bottom,
-
-			BottomRight: b.BottomJunction,
-			TopRight:    b.TopJunction,
-		},
-	).BorderTop(true).BorderBottom(true).BorderRight(true)
-
-	b.styleSingleRowRight = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Top:    b.Top,
-			Right:  b.Right,
-			Bottom: b.Bottom,
-
-			BottomRight: b.BottomRight,
-			TopRight:    b.TopRight,
-		},
-	).BorderTop(true).BorderBottom(true).BorderRight(true)
-}
-
-func (b *Border) generateSingleCellStyle() {
-	b.styleSingleCell = lipgloss.NewStyle().BorderStyle(
-		lipgloss.Border{
-			Top:    b.Top,
-			Left:   b.Left,
-			Right:  b.Right,
-			Bottom: b.Bottom,
-
-			BottomLeft:  b.BottomLeft,
-			BottomRight: b.BottomRight,
-			TopRight:    b.TopRight,
-			TopLeft:     b.TopLeft,
-		},
-	)
-}
+func (b *Border) generateSingleCellStyle() { _ = "STUB: not implemented"; return }
 
 // BorderDefault uses the basic square border, useful to reset the border if
 // it was changed somehow.
 func (m Model) BorderDefault() Model {
+	_ = "STUB: not implemented"
 	// Already generated styles
-	m.border = borderDefault
-
-	return m
+	return *new(Model)
 }
 
 // BorderRounded uses a thin, rounded border.
 func (m Model) BorderRounded() Model {
+	_ = "STUB: not implemented"
 	// Already generated styles
-	m.border = borderRounded
-
-	return m
+	return *new(Model)
 }
 
 // Border uses the given border components to render the table.
-func (m Model) Border(border Border) Model {
-	border.generateStyles()
-
-	m.border = border
-
-	return m
-}
+func (m Model) Border(border Border) Model { _ = "STUB: not implemented"; return *new(Model) }
 
 type borderStyleRow struct {
 	left  lipgloss.Style
@@ -347,93 +154,32 @@ type borderStyleRow struct {
 	right lipgloss.Style
 }
 
-func (b *borderStyleRow) inherit(s lipgloss.Style) {
-	b.left = b.left.Copy().Inherit(s)
-	b.inner = b.inner.Copy().Inherit(s)
-	b.right = b.right.Copy().Inherit(s)
-}
+func (b *borderStyleRow) inherit(s lipgloss.Style) { _ = "STUB: not implemented"; return }
 
 // There's a lot of branches here, but splitting it up further would make it
 // harder to follow. So just be careful with comments and make sure it's tested!
 //
 //nolint:nestif
 func (m Model) styleHeaders() borderStyleRow {
-	hasRows := len(m.GetVisibleRows()) > 0 || m.calculatePadding(0) > 0
-	singleColumn := len(m.columns) == 1
-	styles := borderStyleRow{}
-
-	// Possible configurations:
-	// - Single cell
-	// - Single row
-	// - Single column
-	// - Multi
-
-	if singleColumn {
-		if hasRows {
-			// Single column
-			styles.left = m.border.styleSingleColumnTop
-			styles.inner = styles.left
-			styles.right = styles.left
-		} else {
-			// Single cell
-			styles.left = m.border.styleSingleCell
-			styles.inner = styles.left
-			styles.right = styles.left
-
-			if m.hasFooter() {
-				styles.left = m.border.styleBothWithFooter(styles.left)
-			}
-		}
-	} else if !hasRows {
-		// Single row
-		styles.left = m.border.styleSingleRowLeft
-		styles.inner = m.border.styleSingleRowInner
-		styles.right = m.border.styleSingleRowRight
-
-		if m.hasFooter() {
-			styles.left = m.border.styleLeftWithFooter(styles.left)
-			styles.right = m.border.styleRightWithFooter(styles.right)
-		}
-	} else {
-		// Multi
-		styles.left = m.border.styleMultiTopLeft
-		styles.inner = m.border.styleMultiTop
-		styles.right = m.border.styleMultiTopRight
-	}
-
-	styles.inherit(m.headerStyle)
-
-	return styles
+	_ = "STUB: not implemented"
+	return *new(borderStyleRow)
 }
 
+// Possible configurations:
+// - Single cell
+// - Single row
+// - Single column
+// - Multi
+
+// Single column
+
+// Single cell
+
+// Single row
+
+// Multi
+
 func (m Model) styleRows() (inner borderStyleRow, last borderStyleRow) {
-	if len(m.columns) == 1 {
-		inner.left = m.border.styleSingleColumnInner
-		inner.inner = inner.left
-		inner.right = inner.left
-
-		last.left = m.border.styleSingleColumnBottom
-
-		if m.hasFooter() {
-			last.left = m.border.styleBothWithFooter(last.left)
-		}
-
-		last.inner = last.left
-		last.right = last.left
-	} else {
-		inner.left = m.border.styleMultiLeft
-		inner.inner = m.border.styleMultiInner
-		inner.right = m.border.styleMultiRight
-
-		last.left = m.border.styleMultiBottomLeft
-		last.inner = m.border.styleMultiBottom
-		last.right = m.border.styleMultiBottomRight
-
-		if m.hasFooter() {
-			last.left = m.border.styleLeftWithFooter(last.left)
-			last.right = m.border.styleRightWithFooter(last.right)
-		}
-	}
-
-	return inner, last
+	_ = "STUB: not implemented"
+	return *new(borderStyleRow), *new(borderStyleRow)
 }
